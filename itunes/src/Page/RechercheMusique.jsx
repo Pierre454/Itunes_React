@@ -17,7 +17,9 @@ const RechercheMusique = () => {
     }
 
     return (
-        <div>
+        <div style={{
+            marginTop: 40,
+        }}>
             Recherchez un artiste ou un titre:{' '}
             <TextField value={term} onChange={(e) => setTerm(e.target.value)} />{' '}
             <Button
@@ -28,9 +30,23 @@ const RechercheMusique = () => {
                 Search
             </Button>
             {music.map((x) => (
-                <div>
-                    {x.artistName} {x.collectionName} {x.collectionPrice}${' '}
-                    {x.trackName}
+                <div style={{
+                    margin: 50,
+                }}>
+                <div style={{
+                    width: 600,
+                    height: 100,
+                    display: 'inline-block',
+                }}>
+                    <img src={x.artworkUrl100}></img>
+                    <div> {x.artistName} - {x.collectionName} - {x.trackName} - {x.trackPrice}${' '} </div>
+                    <audio
+                        controls
+                        src={x.previewUrl}>
+                            Your browser does not support the
+                            <code>audio</code> element.
+                    </audio>
+                </div>
                 </div>
             ))}
         </div>

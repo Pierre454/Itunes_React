@@ -6,7 +6,7 @@ import RechercheMusique from './Page/RechercheMusique'
 function App() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [isLogged, setIsLogged] = useState()
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('token') !== undefined)
 
     const handleClick = async () => {
         try {
@@ -33,7 +33,10 @@ function App() {
                 margin: 'auto',
             }}
         >
-            <div>
+            <div style={{
+                    display: 'inline-block',
+                    marginRight: 5,
+                }}>
                 <TextField
                     value={username}
                     onChange={(e) => {
@@ -42,7 +45,10 @@ function App() {
                     type="text"
                 />
             </div>
-            <div>
+            <div style={{
+                    display: 'inline-block',
+                    marginRight: 5,
+                }}>
                 <TextField
                     value={password}
                     onChange={(e) => {
@@ -53,16 +59,38 @@ function App() {
             </div>
             <button
                 style={{
-                    width: 200,
-                    height: 200,
+                    width: 100,
+                    height: 30,
+                    marginTop: 5,
+                    marginRight: 5,
+                    backgroundColor: '#555555',
+                    color: '#FFFFFF',
+                    display: 'inline-block',
+                }}
+                onClick={handleLogOut}
+            >
+                Déconnexion
+            </button>
+            <button
+                style={{
+                    width: 100,
+                    height: 30,
+                    marginTop: 5,
+                    display: 'inline-block',
                 }}
                 onClick={handleClick}
             >
-                Click here and check the developer console.
+                Connexion
             </button>
             {isLogged ? <RechercheMusique /> : <div>You need to be logged</div>}
         </div>
     )
+}
+
+function handleLogOut() {
+    localStorage.setItem('token', undefined)
+    localStorage.clear()
+    window.location.reload()
 }
 
 export default App
