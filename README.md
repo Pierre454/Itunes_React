@@ -10,6 +10,7 @@ Prérequis :
 
 Process d'installation :
 
+- ``npm i -g nodemon``
 - ``start mongodb``
 - ``npm install`` dans le repertoire Api & Itunes
 - ``npm start`` dans le repertoire Api & Itunes
